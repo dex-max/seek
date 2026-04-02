@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>Seek</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body x-data="{ videos: [] }" x-init="videos = await (await fetch('/videos')).json()">
@@ -15,14 +15,14 @@
         <input type=" search" placeholder="Search videos" />
     </header>
     <main>
-        <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
+        <div x-data="videoCard" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
             <template x-for="video in videos">
-                <div>
+                <button @click="playVideo(video)">
                     <div>
                         <img alt="placeholder">
                     </div>
                     <div x-text="video.title"></div>
-                </div>
+                </button>
             </template>
         </div>
     </main>

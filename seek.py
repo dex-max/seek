@@ -1,8 +1,9 @@
 import os
+import subprocess
 from pathlib import Path
 
 from dotenv import load_dotenv
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 load_dotenv()
 
@@ -23,3 +24,12 @@ def videos():
         videos.append({"title": file.name})
 
     return videos
+
+
+@app.route("/play", methods=["POST"])
+def play():
+    file_name = request.form.get("file", "")
+    video_path = VIDEO_FOLDER / file_name
+
+    subprocess.Popen(["mpv", str(video_path.resolve())])
+    return "", 202
