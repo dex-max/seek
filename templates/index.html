@@ -19,7 +19,7 @@
             <template x-for="video in videos">
                 <button @click="playVideo(video)">
                     <div>
-                        <img alt="placeholder">
+                        <img :src="`/thumbnail/${video.title}`">
                     </div>
                     <div x-text="video.title"></div>
                 </button>
