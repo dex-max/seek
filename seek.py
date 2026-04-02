@@ -50,6 +50,9 @@ def get_thumbnail(video_path):
     filename = f"{video_path.stem}.jpg"
     thumbnail_path = THUMBNAIL_FOLDER / filename
 
+    if thumbnail_path.exists():
+        return filename
+
     subprocess.run(
         [
             "ffmpeg",
@@ -61,4 +64,26 @@ def get_thumbnail(video_path):
         ]
     )
 
-    return filename
+    if thumbnail_path.exists():
+        return filename
+
+    subprocess.run(
+        [
+            "ffmpeg",
+            "-y",
+            "-ss",
+            "00:00:05",
+            "-i",
+            str(video_path),
+            "-vframes",
+            "1",
+            "-vf",
+            "scale=480:-1",
+            str(thumbnail_path),
+        ]
+    )
+
+    if thumbnail_path.exists():
+        return filename
+
+    return ""
