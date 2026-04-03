@@ -17,12 +17,14 @@
     <main>
         <div x-data="videoCard" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6">
             <template x-for="video in videos">
-                <button @click="playVideo(video)">
-                    <div>
-                        <img :src="`/thumbnail/${encodeURIComponent(video.title)}`">
-                    </div>
-                    <div x-text="video.title"></div>
-                </button>
+                <div>
+                    <button @click="playVideo(video)">
+                        <div>
+                            <img :src="`/thumbnail/${encodeURIComponent(video.title)}`">
+                        </div>
+                        <div x-text="video.title"></div>
+                    </button>
+                </div>
             </template>
         </div>
     </main>
