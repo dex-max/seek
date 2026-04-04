@@ -15,7 +15,7 @@
         <input type=" search" placeholder="Search videos" />
     </header>
     <main>
-        <div x-data="videoCard" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6">
+        <div x-data="videoCard" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 px-8 py-4">
             <template x-for="video in videos">
                 <div class="bg-neutral-200 rounded-xl overflow-hidden">
                     <button @click="playVideo(video)">
