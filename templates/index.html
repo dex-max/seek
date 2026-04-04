@@ -17,7 +17,7 @@
     <main>
         <div x-data="videoCard" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6">
             <template x-for="video in videos">
-                <div>
+                <div class="bg-neutral-200 rounded-xl overflow-hidden">
                     <button @click="playVideo(video)">
                         <div>
                             <img :src="`/thumbnail/${encodeURIComponent(video.title)}`">
