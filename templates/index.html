@@ -11,7 +11,7 @@
 </head>
 
 <body x-data="{ videos: [] }" x-init="videos = await (await fetch('/videos')).json()">
-    <header class="bg-zinc-900 text-white">
+    <header class="bg-zinc-950 border-b-V border-zinc-900 text-white">
         <input type=" search" placeholder="Search videos" />
     </header>
     <main class="bg-zinc-950">
