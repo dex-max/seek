@@ -4,6 +4,10 @@ document.addEventListener("alpine:init", () => {
 
         async init() {
             this.videos = await (await fetch('/videos')).json()
+            const videoEvents = new EventSource('/videos/events')
+            videoEvents.onmessage = async () => {
+                this.videos = await (await fetch('/videos')).json()
+            }
         }
     }))
 
