@@ -1,4 +1,12 @@
 document.addEventListener("alpine:init", () => {
+    Alpine.data("videoList", () => ({
+        videos: [],
+
+        async init() {
+            this.videos = await (await fetch('/videos')).json()
+        }
+    }))
+
     Alpine.data("videoCard", () => ({
         async playVideo(video) {
             console.log(video);

@@ -26,8 +26,7 @@
         </nav>
     </header>
     <main class="bg-zinc-950">
-        <div x-data="{ videos: [] }" x-init="videos = await (await fetch('videos')).json()"
-            class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 px-8 py-4">
+        <div x-data="videoList" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 px-8 py-4">
             <template x-for="video in videos">
                 <div x-data="videoCard" class="bg-zinc-900 text-white rounded-xl overflow-hidden">
                     <button @click="playVideo(video)">
