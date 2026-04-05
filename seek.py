@@ -9,6 +9,8 @@ from flask import Flask, render_template, request, send_from_directory
 load_dotenv()
 
 app = Flask(__name__)
+
+VIDEO_EXTENSIONS = {".mp4", ".mkv", ".webm"}
 VIDEO_FOLDER = Path(os.getenv("VIDEO_FOLDER", "."))
 THUMBNAIL_FOLDER = Path("thumbnails")
 THUMBNAIL_FOLDER.mkdir(parents=True, exist_ok=True)
@@ -24,7 +26,8 @@ def videos():
     videos = []
 
     for file in VIDEO_FOLDER.iterdir():
-        videos.append({"title": file.name})
+        if file.suffix.lower() in VIDEO_EXTENSIONS:
+            videos.append({"title": file.name})
 
     return videos
 
