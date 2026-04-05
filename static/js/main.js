@@ -10,4 +10,17 @@ document.addEventListener("alpine:init", () => {
             })
         }
     }))
+
+    Alpine.data("downloadBar", () => ({
+        url: "",
+
+        async download() {
+            await fetch("download", {
+                method: "POST",
+                body: new URLSearchParams({
+                    url: this.url
+                })
+            })
+        }
+    }))
 })

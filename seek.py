@@ -49,6 +49,22 @@ def play():
     return "", 202
 
 
+@app.route("/download", methods=["POST"])
+def download():
+    url = request.form.get("url", "").strip()
+
+    download_cmd = [
+        "yt-dlp",
+        "--write-info-json",
+        "-o",
+        str(VIDEO_FOLDER / "%(title)s.%(ext)s"),
+        url,
+    ]
+
+    subprocess.Popen(download_cmd)
+    return "", 202
+
+
 def get_thumbnail(video_path):
     filename = f"{video_path.stem}.jpg"
     thumbnail_path = THUMBNAIL_FOLDER / filename
