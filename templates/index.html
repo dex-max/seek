@@ -10,11 +10,11 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body>
-    <header class="bg-zinc-950 border-b-2 border-zinc-900 text-white">
+<body class="bg-zinc-950">
+    <header class="border-b-2 border-zinc-900 text-white">
         <nav class="flex justify-center items-center px-8 py-4">
             <form x-data="downloadBar" @submit.prevent="download"
-                class="flex bg-zinc-950 rounded-full border-2 border-zinc-900 px-4 py-3 w-[min(800px,100%)]">
+                class="flex rounded-full border-2 border-zinc-900 px-4 py-3 w-[min(800px,100%)]">
                 <input type="url" x-model="url" placeholder="Download Video" class="grow" />
                 <button>
                     <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -25,7 +25,7 @@
             </form>
         </nav>
     </header>
-    <main class="bg-zinc-950">
+    <main>
         <div x-data="videoList" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 px-8 py-4">
             <template x-for="video in videos">
                 <div x-data="videoCard" class="bg-zinc-900 text-white rounded-xl overflow-hidden">
