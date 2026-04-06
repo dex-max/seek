@@ -1,3 +1,5 @@
+import datetime
+import json
 import os
 import queue
 import subprocess
@@ -35,9 +37,30 @@ def index():
 def videos():
     videos = []
 
-    for file in VIDEO_FOLDER.iterdir():
-        if file.suffix.lower() in VIDEO_EXTENSIONS:
-            videos.append({"title": file.name})
+    for video_file in VIDEO_FOLDER.iterdir():
+        if video_file.suffix.lower() in VIDEO_EXTENSIONS:
+            metadata_file = video_file.parent / (video_file.stem + ".info.json")
+            metadata = (
+                json.loads(metadata_file.read_text())
+                if metadata_file.exists()
+                else None
+            )
+
+            video = {"title": video_file.name}
+
+            if metadata:
+                video.update(
+                    {
+                        "duration": str(
+                            datetime.timedelta(seconds=metadata.get("duration"))
+                        ),
+                        "channel_name": metadata.get("channel")
+                        or metadata.get("uploader"),
+                        "upload_date": metadata.get("upload_date"),
+                    }
+                )
+
+            videos.append(video)
 
     return videos
 
