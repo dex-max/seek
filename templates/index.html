@@ -30,8 +30,11 @@
             <template x-for="video in videos">
                 <div x-data="videoCard" class="bg-zinc-900 text-white rounded-xl overflow-hidden">
                     <button @click="playVideo(video)">
-                        <div>
+                        <div class="relative">
                             <img :src="`/thumbnail/${encodeURIComponent(video.title)}`">
+                            <span x-text="video.duration"
+                                class="absolute rounded-md bottom-2 right-2 bg-black/50 px-1 py-0.5 text-sm tracking-tight">
+                            </span>
                         </div>
                         <div x-text="video.title"></div>
                     </button>
