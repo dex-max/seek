@@ -37,7 +37,9 @@ def index():
 def videos():
     videos = []
 
-    for video_file in VIDEO_FOLDER.iterdir():
+    for video_file in sorted(
+        VIDEO_FOLDER.iterdir(), key=lambda p: p.stat().st_mtime, reverse=True
+    ):
         if video_file.suffix.lower() in VIDEO_EXTENSIONS:
             metadata_file = video_file.parent / (video_file.stem + ".info.json")
             metadata = (
